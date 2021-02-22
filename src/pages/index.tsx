@@ -1,7 +1,7 @@
 import { Flex, Stack, useMediaQuery } from "@chakra-ui/react"
 import React from "react"
 import PostComponent from "../components/posts/PostComponent"
-import { Wrapper } from "../components/Wrapper"
+import { Wrapper } from "../components/utility/Wrapper"
 
 const Index = () => {
   const [isMobile] = useMediaQuery("(max-width: 800px)")

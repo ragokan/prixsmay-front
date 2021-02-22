@@ -1,7 +1,7 @@
 import { Button, Menu, MenuButton } from "@chakra-ui/react"
 import React from "react"
 import { FaChevronDown } from "react-icons/fa"
-import { ColorModeSwitcher } from "../ColorModeSwitcher"
+import { ColorModeSwitcher } from "../../utility/ColorModeSwitcher"
 import { LinksForDesktop } from "./LinksForDesktop"
 
 export const DesktopLinks: React.FC<{ user: any }> = ({ user }) => (

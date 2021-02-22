@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import React from "react"
-import { ColorModeSwitcher } from "../ColorModeSwitcher"
+import { ColorModeSwitcher } from "../../utility/ColorModeSwitcher"
 import { LinksForMobile } from "./LinksForMobile"
 import { FaBars } from "react-icons/fa"
 

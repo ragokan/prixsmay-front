@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react"
 import React from "react"
 import { FaSun, FaFilter, FaSearch } from "react-icons/fa"
-import { ColorProp } from "./ColorModeSwitcher"
+import { ColorProp } from "../utility/ColorModeSwitcher"
 import { ResponsiveNavLinks } from "./links/ResponsiveNavLinks"
 
 export const NavComponent = () => {
