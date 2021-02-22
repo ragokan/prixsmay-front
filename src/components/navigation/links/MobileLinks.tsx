@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Button,
   Drawer,
   DrawerBody,
@@ -26,7 +27,9 @@ export const MobileLinks: React.FC<{ user: any }> = ({ user }) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>{user}</DrawerHeader>
+            <DrawerHeader>
+              <Avatar size="xs" marginTop={0.5} /> {user}
+            </DrawerHeader>
             <DrawerBody>
               <VStack alignItems="start" spacing="6" style={{ marginTop: 20 }} onClick={onClose} width="min">
                 <LinksForMobile />
