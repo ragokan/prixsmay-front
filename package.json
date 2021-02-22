@@ -1,13 +1,17 @@
 {
-  "name": "with-chakra-ui-typescript",
+  "name": "prixsmay-client",
   "version": "1.0.0",
+  "author": {
+    "name": "ragokan",
+    "email": "okanyldrmop@gmail.com",
+    "url": "https://github.com/ragokan"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.5",
     "@chakra-ui/react": "^1.3.3",
     "@chakra-ui/theme-tools": "1.0.4",
     "@emotion/react": "11.1.5",
@@ -15,7 +19,8 @@
     "framer-motion": "^3.5.2",
     "next": "latest",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
@@ -23,5 +28,8 @@
     "@types/react-dom": "^16.9.8",
     "typescript": "4.0.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/ragokan/prixsmay-front"
+  }
 }

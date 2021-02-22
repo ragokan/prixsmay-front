@@ -1,10 +1,5 @@
-import { DarkModeSwitch } from "../components/DarkModeSwitch"
 import { Wrapper } from "../components/Wrapper"
 
-const Index = () => (
-  <Wrapper>
-    <DarkModeSwitch />
-  </Wrapper>
-)
+const Index = () => <Wrapper></Wrapper>
 
 export default Index
