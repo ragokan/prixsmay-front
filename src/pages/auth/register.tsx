@@ -6,6 +6,7 @@ import { MdEmail } from "react-icons/md"
 import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector"
 import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
+import { BothLink } from "../../components/utility/BothLink"
 import { Container } from "../../components/utility/Container"
 import * as UserValidation from "../../validation/UserValidation"
 
@@ -68,6 +69,8 @@ const Register: React.FC = () => {
           Submit
         </Button>
       </form>
+      <Divider height="5" />
+      Already an user? Click to <BothLink href="/auth/login">Login!</BothLink>
     </Container>
   )
 }

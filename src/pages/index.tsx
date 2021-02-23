@@ -1,6 +1,7 @@
 import { Flex, Stack, useMediaQuery } from "@chakra-ui/react"
 import React from "react"
 import PostComponent from "../components/posts/PostComponent"
+import { AuthBanner } from "../components/utility/AuthBanner"
 import { Wrapper } from "../components/utility/Wrapper"
 
 const Index = () => {
@@ -10,6 +11,7 @@ const Index = () => {
     <Wrapper>
       <Flex>
         <Stack spacing={8} flex={2} marginRight={!isMobile ? 5 : 0}>
+          <AuthBanner />
           {new Array(20)
             .fill(() => "")
             .map((val, index) => (

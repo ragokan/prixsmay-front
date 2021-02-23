@@ -5,6 +5,7 @@ import { FaLock } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
+import { BothLink } from "../../components/utility/BothLink"
 import { Container } from "../../components/utility/Container"
 import * as UserValidation from "../../validation/UserValidation"
 
@@ -54,6 +55,8 @@ const Login: React.FC = () => {
           Submit
         </Button>
       </form>
+      <Divider height="5" />
+      Don't have an account? Click to <BothLink href="/auth/register">Register!</BothLink>
     </Container>
   )
 }
