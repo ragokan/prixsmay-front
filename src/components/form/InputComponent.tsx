@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react"
 import React from "react"
 import { DeepMap, FieldError } from "react-hook-form"
+import { R4 } from "../../utils/RandomValue"
 
 interface MyInput extends InputProps {
   errors?: DeepMap<any, FieldError>
@@ -29,7 +30,7 @@ export const InputComponent = React.forwardRef<HTMLInputElement, MyInput>((props
 
   return (
     <>
-      <FormControl id={props.id} mb={7}>
+      <FormControl id={props.id || R4()} mb={7}>
         <FormLabel>{props.label}</FormLabel>
         <InputGroup>
           {props.inputChildElement && (

@@ -1,8 +1,9 @@
 import { Button, Divider, Heading } from "@chakra-ui/react"
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { FaLock, FaUserCircle } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector"
 import { InputComponent } from "../../components/form/InputComponent"
 import { Container } from "../../components/utility/Container"
 import * as UserValidation from "../../validation/UserValidation"
@@ -14,11 +15,12 @@ interface RegisterFormTypes {
 
 const Register: React.FC = () => {
   const { handleSubmit, errors, register, formState } = useForm<RegisterFormTypes>()
+  const [profilePicture, setProfilePicture] = useState<string>("")
 
   const onSubmit = (values: RegisterFormTypes) => {
-    console.log(values)
+    const postValue = { ...values, pictureUrl: profilePicture }
+    console.log(postValue)
   }
-  console.log("change")
 
   return (
     <Container maxW={800} m="auto">
@@ -55,6 +57,8 @@ const Register: React.FC = () => {
           type="password"
           inputChildElement={<FaLock />}
         />
+        <DefaultProfilePictureSelector profilePicture={profilePicture} setProfilePicture={setProfilePicture} />
+
         <Button colorScheme="blue" type="submit" isLoading={formState.isSubmitting}>
           Submit
         </Button>
