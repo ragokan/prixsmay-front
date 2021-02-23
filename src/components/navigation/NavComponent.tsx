@@ -1,19 +1,10 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Select,
-  useColorMode,
-  useMediaQuery,
-} from "@chakra-ui/react"
+import { Box, Flex, Heading, useColorMode, useMediaQuery } from "@chakra-ui/react"
 import Link from "next/link"
 import React from "react"
-import { FaSun, FaFilter, FaSearch } from "react-icons/fa"
-import { ColorProp } from "../utility/ColorModeSwitcher"
+import { FaSun } from "react-icons/fa"
 import { ResponsiveNavLinks } from "./links/ResponsiveNavLinks"
+import { LeftSelect } from "./utils/LeftSelect"
+import { CenterSearch } from "./utils/CenterSearch"
 
 export const NavComponent = () => {
   const { colorMode } = useColorMode()
@@ -30,31 +21,9 @@ export const NavComponent = () => {
           </Heading>
         </Link>
 
-        <Select
-          maxWidth={isPhone ? 100 : 200}
-          icon={<FaFilter />}
-          colorScheme="gray"
-          size="sm"
-          iconSize="sm"
-          fontSize={isPhone ? "xs" : "sm"}
-          defaultValue="option1"
-          ml={isPhone ? 2 : 10}
-          mr={isPhone ? 2 : 5}
-        >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
+        <LeftSelect isPhone={isPhone} />
+        <CenterSearch isPhone={isPhone} />
 
-        <InputGroup maxWidth={isPhone ? 150 : 500} m="auto">
-          <InputLeftElement
-            pointerEvents="none"
-            children={<FaSearch color="gray.300" />}
-            fontSize={isPhone ? "xs" : "sm"}
-            marginTop={-1}
-          />
-          <Input type="text" placeholder="Search..." colorScheme={ColorProp} size="sm" />
-        </InputGroup>
         <Box ml="auto">
           <ResponsiveNavLinks />
         </Box>
