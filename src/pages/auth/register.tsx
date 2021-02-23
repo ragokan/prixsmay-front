@@ -5,16 +5,20 @@ import { FaLock, FaUserCircle } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector"
 import { InputComponent } from "../../components/form/InputComponent"
+import { Head } from "../../components/navigation/links/Head"
 import { Container } from "../../components/utility/Container"
 import * as UserValidation from "../../validation/UserValidation"
 
 interface RegisterFormTypes {
   email: string
   password: string
+  username: string
 }
 
 const Register: React.FC = () => {
-  const { handleSubmit, errors, register, formState } = useForm<RegisterFormTypes>()
+  const { handleSubmit, errors, register, formState } = useForm<RegisterFormTypes>({
+    defaultValues: { email: "", password: "", username: "" },
+  })
   const [profilePicture, setProfilePicture] = useState<string>("")
 
   const onSubmit = (values: RegisterFormTypes) => {
@@ -24,6 +28,7 @@ const Register: React.FC = () => {
 
   return (
     <Container maxW={800} m="auto">
+      <Head title="Register" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Heading>Register</Heading>
         <Divider height="5" />

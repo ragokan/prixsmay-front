@@ -7,10 +7,10 @@ interface INavigationLinks {
 export const NavigationLinks: INavigationLinks[] = [
   {
     name: "Register",
-    route: "/register",
+    route: "/auth/register",
   },
   {
     name: "Login",
-    route: "/login",
+    route: "/auth/login",
   },
 ]

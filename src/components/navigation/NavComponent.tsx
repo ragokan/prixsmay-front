@@ -9,6 +9,7 @@ import {
   useColorMode,
   useMediaQuery,
 } from "@chakra-ui/react"
+import Link from "next/link"
 import React from "react"
 import { FaSun, FaFilter, FaSearch } from "react-icons/fa"
 import { ColorProp } from "../utility/ColorModeSwitcher"
@@ -22,10 +23,12 @@ export const NavComponent = () => {
   return (
     <Flex zIndex={10} position="sticky" top={0} p={2} bg={colorMode === "dark" ? "#1A1A1B" : "#FFFFFF"}>
       <Flex flex={1} m="auto" align="center">
-        <Heading size="md">
-          {!isMobile && <FaSun style={{ display: "inline", marginTop: -3 }} />}
-          Prixsmay
-        </Heading>
+        <Link href="/">
+          <Heading size="md" cursor="pointer">
+            {!isMobile && <FaSun style={{ display: "inline", marginTop: -3 }} />}
+            Prixsmay
+          </Heading>
+        </Link>
 
         <Select
           maxWidth={isPhone ? 100 : 200}

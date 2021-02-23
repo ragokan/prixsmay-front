@@ -6,7 +6,13 @@ export const Container: React.FC<BoxProps> = (props) => {
   const { colorMode } = useColorMode()
   return (
     <Wrapper>
-      <Box backgroundColor={colorMode === "dark" ? "#1A1A1B" : "#FFFFFF"} p={10} borderRadius={10} {...props}>
+      <Box
+        backgroundColor={colorMode === "dark" ? "#1A1A1B" : "#FFFFFF"}
+        p={10}
+        borderRadius={10}
+        {...props}
+        shadow="xl"
+      >
         {props.children}
       </Box>
     </Wrapper>
