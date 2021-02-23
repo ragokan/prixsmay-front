@@ -4,8 +4,7 @@ import React from "react"
 import { FaFilter } from "react-icons/fa"
 
 export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
-  const { pathname, push } = useRouter()
-
+  const { push, asPath } = useRouter()
   return (
     <Select
       maxWidth={isPhone ? 100 : 200}
@@ -15,7 +14,7 @@ export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
       iconSize="sm"
       fontSize={isPhone ? "xs" : "sm"}
       defaultValue={"/"}
-      value={pathname}
+      value={asPath}
       onChange={(e) => push(e.target.value)}
       ml={isPhone ? 2 : 10}
       mr={isPhone ? 2 : 5}
