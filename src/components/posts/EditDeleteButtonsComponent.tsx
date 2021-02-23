@@ -20,6 +20,7 @@ export const EditDeleteButtons: React.FC<EditDeleteButtonProps> = ({ isComment =
       <IconButton
         as={Link}
         mr={isMobile ? 0 : 4}
+        mb={isMobile ? 3 : 0}
         icon={<FaEdit />}
         aria-label="Edit Post"
         size={size}

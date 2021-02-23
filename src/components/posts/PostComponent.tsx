@@ -1,4 +1,4 @@
-import { useColorMode, useMediaQuery, Flex, Box, Link, Heading, Divider, Icon, Text } from "@chakra-ui/react"
+import { useColorMode, useMediaQuery, Flex, Box, Link, Heading, Divider, Icon, Text, chakra } from "@chakra-ui/react"
 import React from "react"
 import { FaCommentAlt } from "react-icons/fa"
 import { EditDeleteButtons } from "./EditDeleteButtonsComponent"
@@ -12,16 +12,14 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false })
   const [isMobile] = useMediaQuery("(max-width: 800px)")
   const isHomePage = !isDetailedView
 
-  return (
+  const postComp = (
     <Flex p={5} shadow="lg" borderWidth="2px" borderRadius="4px" bg={colorMode === "dark" ? "#151516" : "#F7F9FA"}>
       <VoteComponent onClick={{ up: () => {}, down: () => {} }} isVoted={{}} />
       <Box flex={1} position="relative">
         <Link>
           <Heading fontSize="xl">Okanman</Heading>
         </Link>
-
         <Text>posted by bukimnan</Text>
-
         <Flex align="center">
           <Text flex={1} mt={4}>
             Burası açıklama
@@ -37,12 +35,14 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false })
             </Flex>
           </Text>
         </Flex>
-        <Box position="absolute" right="0" top={isMobile ? "20%" : "50%"}>
+        <Box position="absolute" right="0" top={isMobile ? "20%" : "50%"} mt={-4}>
           <EditDeleteButtons onClick={{ edit: () => {}, delete: () => {} }} />
         </Box>
       </Box>
     </Flex>
   )
+
+  return <chakra.article>{postComp}</chakra.article>
 }
 
 export default PostComponent
