@@ -8,7 +8,9 @@ export const AuthBanner: React.FC = () => {
   return !user ? (
     <Flex p={5} shadow="lg" borderWidth="2px" borderRadius="4px" bg={colorMode === "dark" ? "#151516" : "#F7F9FA"}>
       <Box flex={1} position="relative" textAlign="center">
-        <Heading fontSize="lg">Looks like you are not logged in.</Heading>
+        <Heading fontSize="lg" mb={3}>
+          Looks like you are not logged in.
+        </Heading>
         <Divider />
         <BothLink href="/auth/login" display="block" mt={2}>
           If you have an account, click to Login.

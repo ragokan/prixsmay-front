@@ -22,7 +22,16 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false })
         <Text>posted by bukimnan</Text>
         <Flex align="center">
           <Text flex={1} mt={4}>
-            Burası açıklama
+            <Text noOfLines={3}>
+              {new Array(20)
+                .fill(() => "")
+                .map((val, index) => (
+                  <chakra.div key={index}>
+                    Hoppalaa
+                    <Divider visibility="hidden" height="3" />
+                  </chakra.div>
+                ))}
+            </Text>
             <Divider my={2} />
             <Flex>
               <Box color="gray" fontSize="sm">
