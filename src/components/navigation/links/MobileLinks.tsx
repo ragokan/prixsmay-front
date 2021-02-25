@@ -14,8 +14,9 @@ import React from "react"
 import { ColorModeSwitcher } from "../../utility/ColorModeSwitcher"
 import { LinksForMobile } from "./LinksForMobile"
 import { FaBars } from "react-icons/fa"
+import { IUser } from "../../../types/UserType"
 
-export const MobileLinks: React.FC<{ user: any }> = ({ user }) => {
+export const MobileLinks: React.FC<{ user: IUser }> = ({ user }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef<HTMLButtonElement>(null)
   return (
@@ -28,11 +29,11 @@ export const MobileLinks: React.FC<{ user: any }> = ({ user }) => {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>
-              <Avatar size="xs" marginTop={0.5} /> {user}
+              <Avatar size="xs" marginTop={0.5} src={user?.profile?.picture} /> {user?.username || "Guest"}
             </DrawerHeader>
             <DrawerBody>
               <VStack alignItems="start" spacing="6" style={{ marginTop: 20 }} onClick={onClose} width="min">
-                <LinksForMobile />
+                <LinksForMobile isLogged={Boolean(user)} />
               </VStack>
               <ColorModeSwitcher marginTop="5" />
             </DrawerBody>

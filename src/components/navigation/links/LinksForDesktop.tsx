@@ -2,9 +2,13 @@ import { MenuItem, MenuList } from "@chakra-ui/react"
 import { NavigationLinks } from "./NavigationLinks"
 import Link from "next/link"
 
-export const LinksForDesktop: React.FC = (props) => (
+export const LinksForDesktop: React.FC<{ isLogged: boolean }> = (props) => (
   <MenuList>
-    {NavigationLinks.map((link, index) => (
+    {NavigationLinks.filter((link) => {
+      if (!link.authProtected && link.hideForUser && !props.isLogged) return link
+      else if (!props.isLogged && !link.hideForUser) return link
+      else if (props.isLogged && link.authProtected) return link
+    }).map((link, index) => (
       <Link href={link.route} key={index}>
         <MenuItem> {link.name}</MenuItem>
       </Link>
