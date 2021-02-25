@@ -8,21 +8,16 @@ import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
 import { BothLink } from "../../components/utility/BothLink"
 import { Container } from "../../components/utility/Container"
+import { RegisterBodyType } from "../../types/RequestBodyTypes"
 import * as UserValidation from "../../validation/UserValidation"
 
-interface RegisterFormTypes {
-  email: string
-  password: string
-  username: string
-}
-
 const Register: React.FC = () => {
-  const { handleSubmit, errors, register, formState } = useForm<RegisterFormTypes>({
+  const { handleSubmit, errors, register, formState } = useForm<RegisterBodyType>({
     defaultValues: { email: "", password: "", username: "" },
   })
   const [profilePicture, setProfilePicture] = useState<string>("")
 
-  const onSubmit = (values: RegisterFormTypes) => {
+  const onSubmit = (values: RegisterBodyType) => {
     const postValue = { ...values, pictureUrl: profilePicture }
     console.log(postValue)
   }

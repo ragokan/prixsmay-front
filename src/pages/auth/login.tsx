@@ -7,19 +7,15 @@ import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
 import { BothLink } from "../../components/utility/BothLink"
 import { Container } from "../../components/utility/Container"
+import { LoginBodyType } from "../../types/RequestBodyTypes"
 import * as UserValidation from "../../validation/UserValidation"
 
-interface LoginFormTypes {
-  email: string
-  password: string
-}
-
 const Login: React.FC = () => {
-  const { handleSubmit, errors, register, formState } = useForm<LoginFormTypes>({
+  const { handleSubmit, errors, register, formState } = useForm<LoginBodyType>({
     defaultValues: { email: "", password: "" },
   })
 
-  const onSubmit = (values: LoginFormTypes) => {
+  const onSubmit = (values: LoginBodyType) => {
     console.log(values)
   }
 

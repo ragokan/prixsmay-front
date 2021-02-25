@@ -13,8 +13,7 @@ export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
       size="sm"
       iconSize="sm"
       fontSize={isPhone ? "xs" : "sm"}
-      defaultValue={"/"}
-      value={asPath}
+      value={asPath || "/"}
       onChange={(e) => push(e.target.value)}
       ml={isPhone ? 2 : 10}
       mr={isPhone ? 2 : 5}
