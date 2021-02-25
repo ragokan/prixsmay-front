@@ -17,8 +17,8 @@ export const NavigationLinks: INavigationLinks[] = [
     hideForUser: true,
   },
   {
-    name: "Secret",
-    route: "/secret/secret",
+    name: "Logout",
+    route: "/auth/logout",
     authProtected: true,
   },
 ]

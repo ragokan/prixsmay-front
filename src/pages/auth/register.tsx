@@ -15,7 +15,7 @@ import * as UserValidation from "../../validation/UserValidation"
 
 const Register: React.FC = () => {
   const router = useRouter()
-  isLogged && router.push("/")
+  isLogged() && router.push("/")
   const { handleSubmit, errors, register, formState } = useForm<RegisterBodyType>({
     defaultValues: { email: "", password: "", username: "" },
   })
