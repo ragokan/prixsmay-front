@@ -1,8 +1,7 @@
 import { BackgroundProps } from "@chakra-ui/react"
 
 export type AlertType = {
-  id: number
+  id: string
   color: BackgroundProps["bg"]
   message: string
-  duration?: number
 }
