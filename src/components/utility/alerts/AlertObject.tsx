@@ -1,7 +1,7 @@
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "@chakra-ui/icons"
 import { CloseButton, Flex, Heading, IconProps } from "@chakra-ui/react"
 import React from "react"
-import { RemoveAlert } from "../../../actions/AlertActions"
+import { RemoveAlertAction } from "../../../actions/AlertActions"
 import { AlertType } from "../../../types/AlertType"
 
 export const AlertObject: React.FC<{ alert: AlertType }> = ({ alert }) => {
@@ -17,7 +17,14 @@ export const AlertObject: React.FC<{ alert: AlertType }> = ({ alert }) => {
       <Heading ml="2" mb="-2" size="sm">
         {alert.message}
       </Heading>
-      <CloseButton position="absolute" right="3" top="auto" mt={-2.5} size="lg" onClick={() => RemoveAlert(alert.id)} />
+      <CloseButton
+        position="absolute"
+        right="3"
+        top="auto"
+        mt={-2.5}
+        size="lg"
+        onClick={() => RemoveAlertAction(alert.id)}
+      />
     </Flex>
   )
 }

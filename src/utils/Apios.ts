@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
+import { AddAlertAction } from "../actions/AlertActions"
 import { IError } from "../types/ErrorType"
 import { IResponse } from "../types/ResponseTypes"
 
@@ -21,7 +22,7 @@ apios.interceptors.response.use(
     return response
   },
   async (error: AxiosError<IError>) => {
-    console.log(error.response.data.message)
+    AddAlertAction(error.response.data.message, "red")
     throw new axios.Cancel("Error happened!")
   }
 )
