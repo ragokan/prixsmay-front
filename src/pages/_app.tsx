@@ -5,7 +5,7 @@ import MainContainer from "../components/utility/MainContainer"
 import { NavComponent } from "../components/navigation/NavComponent"
 import { Head } from "../components/navigation/links/Head"
 import React from "react"
-import { AlertHolder } from "../components/utility/errors/AlertHolder.tsx"
+import { AlertHolder } from "../components/utility/alerts/AlertHolder.tsx"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
