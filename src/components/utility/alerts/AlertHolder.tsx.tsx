@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react"
 import React from "react"
-import { AlertState } from "../../../store/AlertStore"
+import { AlertState } from "../../../state/AlertState"
 import { AlertObject } from "./AlertObject"
 
 export const AlertHolder: React.FC = () => {

@@ -22,7 +22,7 @@ apios.interceptors.response.use(
     return response
   },
   async (error: AxiosError<IError>) => {
-    AddAlertAction(error.response.data.message, "red")
+    AddAlertAction(error?.response?.data?.message || "Server Error!", "red")
     throw new axios.Cancel("Error happened!")
   }
 )

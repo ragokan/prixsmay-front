@@ -6,7 +6,7 @@ interface IAlertState extends State {
   alerts: AlertType[]
 }
 
-export const AlertState = create<IAlertState>(devtools((set, get, api) => ({ alerts: [] })))
+export const AlertState = create<IAlertState>(devtools(() => ({ alerts: [] })))
 
 export const setAlertState = (partial: PartialState<IAlertState>) => AlertState.setState(partial)
 export const getAlertState = AlertState.getState

@@ -3,6 +3,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { FaLock } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import { LoginAction } from "../../actions/UserActions"
 import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
 import { BothLink } from "../../components/utility/BothLink"
@@ -15,8 +16,8 @@ const Login: React.FC = () => {
     defaultValues: { email: "", password: "" },
   })
 
-  const onSubmit = (values: LoginBodyType) => {
-    console.log(values)
+  const onSubmit = async (values: LoginBodyType) => {
+    await LoginAction(values, () => console.log("ok"))
   }
 
   return (

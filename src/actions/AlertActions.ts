@@ -1,5 +1,5 @@
 import { BackgroundProps } from "@chakra-ui/react"
-import { setAlertState } from "../store/AlertStore"
+import { setAlertState } from "../state/AlertState"
 import { AlertType } from "../types/AlertType"
 import { R4 } from "../utils/RandomValue"
 
