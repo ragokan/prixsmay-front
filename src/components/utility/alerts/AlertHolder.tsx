@@ -5,11 +5,13 @@ import { AlertObject } from "./AlertObject"
 
 export const AlertHolder: React.FC = () => {
   const alerts = AlertState((state) => state.alerts)
-  return (
+  return alerts.length > 0 ? (
     <Box mt={8} mx="auto" maxW={1100} w="95%">
       {alerts.map((alert) => (
         <AlertObject key={alert.id} alert={alert} />
       ))}
     </Box>
+  ) : (
+    <> </>
   )
 }

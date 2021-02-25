@@ -1,4 +1,5 @@
 import { Button, Divider, Heading } from "@chakra-ui/react"
+import { useRouter } from "next/dist/client/router"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { FaLock } from "react-icons/fa"
@@ -9,15 +10,19 @@ import { Head } from "../../components/navigation/links/Head"
 import { BothLink } from "../../components/utility/BothLink"
 import { Container } from "../../components/utility/Container"
 import { LoginBodyType } from "../../types/RequestBodyTypes"
+import { isLogged } from "../../utils/CheckAuth"
 import * as UserValidation from "../../validation/UserValidation"
 
 const Login: React.FC = () => {
+  const router = useRouter()
+  isLogged && router.push("/")
+
   const { handleSubmit, errors, register, formState } = useForm<LoginBodyType>({
     defaultValues: { email: "", password: "" },
   })
 
   const onSubmit = async (values: LoginBodyType) => {
-    await LoginAction(values, () => console.log("ok"))
+    await LoginAction(values, () => router.push("/"))
   }
 
   return (
