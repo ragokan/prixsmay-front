@@ -1,13 +1,15 @@
 import { useColorMode, useMediaQuery, Flex, Box, Link, Heading, Divider, Icon, Text, chakra } from "@chakra-ui/react"
 import React from "react"
 import { FaCommentAlt } from "react-icons/fa"
+import { IPost } from "../../types/PostType"
 import { EditDeleteButtons } from "./EditDeleteButtonsComponent"
 import { VoteComponent } from "./VoteComponent"
 
 interface PostComponentProps {
   isDetailedView?: boolean
+  post: IPost
 }
-const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false }) => {
+const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false, post }) => {
   const { colorMode } = useColorMode()
   const [isMobile] = useMediaQuery("(max-width: 800px)")
   const isHomePage = !isDetailedView
@@ -17,7 +19,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false })
       <VoteComponent onClick={{ up: () => {}, down: () => {} }} isVoted={{}} />
       <Box flex={1} position="relative">
         <Link>
-          <Heading fontSize="xl">Okanman</Heading>
+          <Heading fontSize="xl">{post.title}</Heading>
         </Link>
         <Text>posted by bukimnan</Text>
         <Flex align="center">
