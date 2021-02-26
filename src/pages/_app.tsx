@@ -6,12 +6,11 @@ import { NavComponent } from "../components/navigation/NavComponent"
 import { Head } from "../components/navigation/links/Head"
 import React from "react"
 import { AlertHolder } from "../components/utility/alerts/AlertHolder"
-import { DataFetcher } from "../components/utility/DataFetcher"
+import "../components/utility/DataFetcher"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <DataFetcher />
       <MainContainer>
         <NavComponent />
         <Head />

@@ -26,6 +26,8 @@ export const LogoutAction = async (callback?: Function) => {
 export const CheckAuthAction = async () => {
   const { data } = await apios.get<ICheckAuthResponse>("/auth/check")
   data.isLogged && setUserState({ isLogged: true })
+
+  return data.isLogged
 }
 
 export const FetchUserAction = async () => {

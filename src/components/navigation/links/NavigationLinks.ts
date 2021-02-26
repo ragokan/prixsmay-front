@@ -22,6 +22,11 @@ export const NavigationLinks: INavigationLinks[] = [
     authProtected: true,
   },
   {
+    name: "Account",
+    route: "/user/account",
+    authProtected: true,
+  },
+  {
     name: "Logout",
     route: "/auth/logout",
     authProtected: true,
