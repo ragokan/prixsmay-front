@@ -1,4 +1,4 @@
-import { useColorMode, useMediaQuery, Flex, Box, Link, Heading, Divider, Icon, Text, chakra } from "@chakra-ui/react"
+import { Box, chakra, Divider, Flex, Heading, Icon, Link, Text, useColorMode, useMediaQuery } from "@chakra-ui/react"
 import React from "react"
 import { FaCommentAlt } from "react-icons/fa"
 import { IPost } from "../../types/PostType"
@@ -23,17 +23,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false, p
         </Link>
         <Text>posted by bukimnan</Text>
         <Flex align="center">
-          <Text flex={1} mt={4}>
-            <Text noOfLines={3}>
-              {new Array(20)
-                .fill(() => "")
-                .map((val, index) => (
-                  <chakra.div key={index}>
-                    Hoppalaa
-                    <Divider visibility="hidden" height="3" />
-                  </chakra.div>
-                ))}
-            </Text>
+          <Box flex={1} mt={4}>
             <Divider my={2} />
             <Flex>
               <Box color="gray" fontSize="sm">
@@ -44,7 +34,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false, p
                 <Icon as={FaCommentAlt} /> 5 Comments
               </Box>
             </Flex>
-          </Text>
+          </Box>
         </Flex>
         <Box position="absolute" right="0" top={isMobile ? "20%" : "50%"} mt={-4}>
           <EditDeleteButtons onClick={{ edit: () => {}, delete: () => {} }} />
