@@ -8,7 +8,13 @@ export const LoginAction = async (user: LoginBodyType, callback?: Function) => {
 
   setUserState({ user: data.user, isLogged: true })
 
-  callback && callback()
+  callback && data.success && callback()
+}
+
+export const RegisterAction = async (user: LoginBodyType, callback?: Function) => {
+  const { data } = await apios.post<IUserResponse>("/auth/register", user)
+
+  callback && data.success && callback()
 }
 
 export const LogoutAction = async (callback?: Function) => {
@@ -25,4 +31,14 @@ export const CheckAuthAction = async () => {
 export const FetchUserAction = async () => {
   const { data } = await apios.get<IUserResponse>("/user")
   setUserState({ isLogged: true, user: data.user })
+}
+
+export const ConfirmAccountAction = async (token: string, onEnd?: Function) => {
+  const { data } = await apios.post<IUserResponse>("/auth/confirmEmail", {
+    token,
+  })
+
+  setUserState({ user: data.user, isLogged: true })
+
+  onEnd && onEnd()
 }

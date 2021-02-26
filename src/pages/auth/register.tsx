@@ -1,8 +1,10 @@
 import { Button, Divider, Heading } from "@chakra-ui/react"
+import { useRouter } from "next/dist/client/router"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { FaLock, FaUserCircle } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
+import { RegisterAction } from "../../actions/AuthActions"
 import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector"
 import { InputComponent } from "../../components/form/InputComponent"
 import { Head } from "../../components/navigation/links/Head"
@@ -14,14 +16,15 @@ import * as UserValidation from "../../validation/UserValidation"
 
 const Register: React.FC = () => {
   UserProtect()
+  const router = useRouter()
   const { handleSubmit, errors, register, formState } = useForm<RegisterBodyType>({
     defaultValues: { email: "", password: "", username: "" },
   })
   const [profilePicture, setProfilePicture] = useState<string>("")
 
-  const onSubmit = (values: RegisterBodyType) => {
+  const onSubmit = async (values: RegisterBodyType) => {
     const postValue = { ...values, pictureUrl: profilePicture }
-    console.log(postValue)
+    await RegisterAction(postValue, () => router.push("/auth/registerSuccess"))
   }
 
   return (
