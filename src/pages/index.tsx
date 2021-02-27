@@ -1,18 +1,16 @@
 import { Flex, Stack, useMediaQuery } from "@chakra-ui/react"
+import { GetServerSideProps, NextPage } from "next"
 import React from "react"
 import { FetchPostsAction } from "../actions/PostActions"
 import PostComponent from "../components/posts/PostComponent"
 import { AuthBanner } from "../components/utility/AuthBanner"
 import { Wrapper } from "../components/utility/Wrapper"
-import { PostState } from "../state/PostState"
+import { PostState, setPostState } from "../state/PostState"
 import { UserState } from "../state/UserState"
+import { IPost } from "../types/PostType"
 
-// Fetch posts for ssr
-;(async () => {
-  await FetchPostsAction({})
-})()
-
-const Index = () => {
+const Index: NextPage<Props> = ({ page, serverPosts }) => {
+  setPostState((prevState) => (page === 1 ? { posts: serverPosts } : { posts: [...prevState.posts, ...serverPosts] }))
   const posts = PostState((state) => state.posts)
   const [isMobile] = useMediaQuery("(max-width: 800px)")
   const isLogged = UserState((state) => state.isLogged)
@@ -38,6 +36,17 @@ const Index = () => {
       </Flex>
     </Wrapper>
   )
+}
+
+interface Props {
+  page: number
+  serverPosts: IPost[]
+}
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const page: number = 1
+  const { posts } = await FetchPostsAction({ page })
+
+  return { props: { serverPosts: posts, page } as Props }
 }
 
 export default Index
