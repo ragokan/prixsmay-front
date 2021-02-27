@@ -16,3 +16,8 @@ export interface IPost {
   createdAt: Date
   updatedAt: Date
 }
+
+export enum CurrentView {
+  single = "single",
+  multiple = "multiple",
+}

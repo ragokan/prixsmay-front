@@ -8,14 +8,12 @@ import { PostHeader } from "./PostHeader"
 import { PostVotes } from "./PostVotes"
 
 interface PostComponentProps {
-  isDetailedView?: boolean
   post: IPost
 }
 
-const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false, post }) => {
+const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
   const { colorMode } = useColorMode()
   const [isMobile] = useMediaQuery("(max-width: 800px)")
-  const isHomePage = !isDetailedView
   const userId = UserState((state) => state.user?.id || 0)
 
   const postComp = (
