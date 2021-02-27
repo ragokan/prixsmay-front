@@ -1,41 +1,29 @@
-import { Box, chakra, Divider, Flex, Heading, Icon, Link, Text, useColorMode, useMediaQuery } from "@chakra-ui/react"
+import { Box, chakra, Flex, useColorMode, useMediaQuery } from "@chakra-ui/react"
 import React from "react"
-import { FaCommentAlt } from "react-icons/fa"
+import { UserState } from "../../state/UserState"
 import { IPost } from "../../types/PostType"
 import { EditDeleteButtons } from "./EditDeleteButtonsComponent"
-import { VoteComponent } from "./VoteComponent"
+import { PostBody } from "./PostBody"
+import { PostHeader } from "./PostHeader"
+import { PostVotes } from "./PostVotes"
 
 interface PostComponentProps {
   isDetailedView?: boolean
   post: IPost
 }
+
 const PostComponent: React.FC<PostComponentProps> = ({ isDetailedView = false, post }) => {
   const { colorMode } = useColorMode()
   const [isMobile] = useMediaQuery("(max-width: 800px)")
   const isHomePage = !isDetailedView
+  const userId = UserState((state) => state.user?.id || 0)
 
   const postComp = (
     <Flex p={5} shadow="lg" borderWidth="2px" borderRadius="4px" bg={colorMode === "dark" ? "#151516" : "#F7F9FA"}>
-      <VoteComponent onClick={{ up: () => {}, down: () => {} }} isVoted={{}} />
+      <PostVotes post={post} userId={userId} />
       <Box flex={1} position="relative">
-        <Link>
-          <Heading fontSize="xl">{post.title}</Heading>
-        </Link>
-        <Text>posted by bukimnan</Text>
-        <Flex align="center">
-          <Box flex={1} mt={4}>
-            <Divider my={2} />
-            <Flex>
-              <Box color="gray" fontSize="sm">
-                <Icon as={FaCommentAlt} /> 5 Comments
-              </Box>
-              <Divider width={5} orientation="vertical" />
-              <Box color="gray" fontSize="sm">
-                <Icon as={FaCommentAlt} /> 5 Comments
-              </Box>
-            </Flex>
-          </Box>
-        </Flex>
+        <PostHeader post={post} />
+        <PostBody post={post} />
         <Box position="absolute" right="0" top={isMobile ? "20%" : "50%"} mt={-4}>
           <EditDeleteButtons onClick={{ edit: () => {}, delete: () => {} }} />
         </Box>

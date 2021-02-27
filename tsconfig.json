@@ -22,7 +22,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noImplicitReturns": false,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
