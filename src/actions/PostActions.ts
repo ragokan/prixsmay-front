@@ -16,6 +16,12 @@ export const FetchPostsAction = async ({ page = 1, limit = 10, orderBy = "newest
   return data
 }
 
+export const FetchSinglePostAction = async (postId: number) => {
+  const { data } = await apios.get<IPostResponse>(`/post/${postId}`)
+
+  return data.post
+}
+
 export const VotePostAction = async (postId: number, type: VoteType, setLoading: setLoading) => {
   setLoading(type, true)
   const { data } = await apios.post<IVoteResponse>("/post/vote", { postId, type })
@@ -24,4 +30,6 @@ export const VotePostAction = async (postId: number, type: VoteType, setLoading:
     posts: prevState.posts.map((post) => (post.id === postId ? { ...post, votes: data.votes as IVote[] } : post)),
   }))
   setLoading(type, false)
+
+  return data.votes
 }
