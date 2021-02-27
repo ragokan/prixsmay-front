@@ -1,6 +1,6 @@
 import { Flex, Stack, useMediaQuery } from "@chakra-ui/react"
 import { GetServerSideProps, NextPage } from "next"
-import React from "react"
+import React, { useEffect } from "react"
 import { FetchSinglePostAction } from "../../actions/PostActions"
 import PostComponent from "../../components/posts/PostComponent"
 import { Wrapper } from "../../components/utility/Wrapper"
@@ -9,15 +9,17 @@ import { CurrentView, IPost } from "../../types/PostType"
 import { NotEmpty } from "../../utils/NotEmpty"
 
 const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
+  useEffect(() => {
+    setPostState({ currentPost: post, currentView: CurrentView.single })
+  }, [])
   const [isMobile] = useMediaQuery("(max-width: 800px)")
-  setPostState({ currentPost: post, currentView: CurrentView.single })
   const currentPost = PostState((state) => state.currentPost)
 
   return NotEmpty(post) ? (
     <Wrapper>
       <Flex>
         <Stack spacing={8} flex={2} marginRight={!isMobile ? 5 : 0}>
-          <PostComponent post={currentPost} />
+          <PostComponent post={currentPost || post} />
         </Stack>
         {!isMobile && (
           <Stack spacing={8} flex={1}>
