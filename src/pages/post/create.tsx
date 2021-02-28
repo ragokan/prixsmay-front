@@ -15,10 +15,12 @@ const CreatePost: NextPage = () => {
     defaultValues: { title: "" },
   })
 
+  const onSubmit = async () => {}
+
   return (
     <Container maxW={800} m="auto">
       <Head title="Create Post" />
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Heading>Create Post</Heading>
         <Divider height="5" />
         <InputComponent label="Title" placeholder="Title" ref={register()} name="title" errors={errors} type="text" />

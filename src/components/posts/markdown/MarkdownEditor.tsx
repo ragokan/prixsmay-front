@@ -1,13 +1,15 @@
 import React from "react"
 import ReactMarkdown from "react-markdown"
 import ReactMde, { SaveImageHandler } from "react-mde"
+import { UploadImageAction } from "../../../actions/UtilityActions"
 import { Renderer } from "../../../utils/Renderer"
 
 export const MarkdownEditor: React.FC<{ value: string; setValue: (value: string) => void }> = ({ value, setValue }) => {
   const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write")
 
-  const saveImage: SaveImageHandler = async function* (data) {
-    yield "https://picsum.photos/300"
+  const saveImage: SaveImageHandler = async function* (image) {
+    const url = await UploadImageAction(image)
+    yield url
     return true
   }
 
