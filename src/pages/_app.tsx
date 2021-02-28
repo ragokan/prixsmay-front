@@ -7,6 +7,7 @@ import { Head } from "../components/navigation/links/Head"
 import React from "react"
 import { AlertHolder } from "../components/utility/alerts/AlertHolder"
 import "../components/utility/DataFetcher"
+import "../components/posts/markdown/MarkdownEditor.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -1,8 +1,10 @@
-import { Flex, Stack, useMediaQuery } from "@chakra-ui/react"
+import { Flex, Heading, Stack, useMediaQuery } from "@chakra-ui/react"
 import { GetServerSideProps, NextPage } from "next"
 import React, { useEffect } from "react"
 import { FetchSinglePostAction } from "../../actions/PostActions"
+import { Head } from "../../components/navigation/links/Head"
 import PostComponent from "../../components/posts/PostComponent"
+import { Container } from "../../components/utility/Container"
 import { Wrapper } from "../../components/utility/Wrapper"
 import { PostState, setPostState } from "../../state/PostState"
 import { CurrentView, IPost } from "../../types/PostType"
@@ -18,6 +20,7 @@ const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
   return NotEmpty(post) ? (
     <Wrapper>
       <Flex>
+        <Head title={post.title} />
         <Stack spacing={8} flex={2} marginRight={!isMobile ? 5 : 0}>
           <PostComponent post={currentPost || post} />
         </Stack>
@@ -33,7 +36,11 @@ const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
       </Flex>
     </Wrapper>
   ) : (
-    <Wrapper>No post is found with this id!</Wrapper>
+    <Container minH="50vh" d="flex">
+      <Heading textAlign="center" m="auto">
+        No post is found with this id!
+      </Heading>
+    </Container>
   )
 }
 
