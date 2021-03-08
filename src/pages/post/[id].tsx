@@ -1,21 +1,21 @@
-import { Flex, Heading, Stack, useMediaQuery } from "@chakra-ui/react"
-import { GetServerSideProps, NextPage } from "next"
-import React, { useEffect } from "react"
-import { FetchSinglePostAction } from "../../actions/PostActions"
-import { Head } from "../../components/navigation/links/Head"
-import PostComponent from "../../components/posts/PostComponent"
-import { Container } from "../../components/utility/Container"
-import { Wrapper } from "../../components/utility/Wrapper"
-import { PostState, setPostState } from "../../state/PostState"
-import { CurrentView, IPost } from "../../types/PostType"
-import { NotEmpty } from "../../utils/NotEmpty"
+import { Flex, Stack, useMediaQuery } from "@chakra-ui/react";
+import { GetServerSideProps, NextPage } from "next";
+import React, { useEffect } from "react";
+import { FetchSinglePostAction } from "../../actions/PostActions";
+import { Head } from "../../components/navigation/links/Head";
+import PostComponent from "../../components/posts/PostComponent";
+import { NotFoundComponent } from "../../components/utility/NotFound";
+import { Wrapper } from "../../components/utility/Wrapper";
+import { PostState, setPostState } from "../../state/PostState";
+import { CurrentView, IPost } from "../../types/PostType";
+import { NotEmpty } from "../../utils/NotEmpty";
 
 const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
   useEffect(() => {
-    setPostState({ currentPost: post, currentView: CurrentView.single })
-  }, [])
-  const [isMobile] = useMediaQuery("(max-width: 800px)")
-  const currentPost = PostState((state) => state.currentPost)
+    setPostState({ currentPost: post, currentView: CurrentView.single });
+  }, []);
+  const [isMobile] = useMediaQuery("(max-width: 800px)");
+  const currentPost = PostState((state) => state.currentPost);
 
   return NotEmpty(post) ? (
     <Wrapper>
@@ -36,24 +36,20 @@ const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
       </Flex>
     </Wrapper>
   ) : (
-    <Container minH="50vh" d="flex">
-      <Heading textAlign="center" m="auto">
-        No post is found with this id!
-      </Heading>
-    </Container>
-  )
-}
+    <NotFoundComponent title="post" />
+  );
+};
 
 interface SinglePostPageProps {
-  post: IPost
+  post: IPost;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const postId: number = typeof params.id === "string" ? parseInt(params.id) : -1
-  let post
-  post = postId !== -1 ? await FetchSinglePostAction(postId).catch((_) => (post = {})) : {}
+  const postId: number = typeof params.id === "string" ? parseInt(params.id) : -1;
+  let post;
+  post = postId !== -1 ? await FetchSinglePostAction(postId).catch((_) => (post = {})) : {};
 
-  return { props: { post } as SinglePostPageProps }
-}
+  return { props: { post } as SinglePostPageProps };
+};
 
-export default SinglePostPage
+export default SinglePostPage;

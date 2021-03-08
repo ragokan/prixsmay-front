@@ -1,28 +1,29 @@
-import { Avatar, Box, Button, Divider, Flex, Stack, Text, useColorMode, useMediaQuery } from "@chakra-ui/react"
-import { GetServerSideProps, NextPage } from "next"
-import React, { useEffect } from "react"
-import { GetProfileAction } from "../../actions/ProfileActions"
-import { CakeComponent } from "../../components/icons/CakeComponent"
-import { KarmaComponent } from "../../components/icons/KarmaComponent"
-import PostComponent from "../../components/posts/PostComponent"
-import { Wrapper } from "../../components/utility/Wrapper"
-import { setPostState, PostState } from "../../state/PostState"
-import { CurrentView } from "../../types/PostType"
-import { IUser } from "../../types/UserType"
-import { NotEmpty } from "../../utils/NotEmpty"
+import { Avatar, Box, Button, Divider, Flex, Stack, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
+import { GetServerSideProps, NextPage } from "next";
+import React, { useEffect } from "react";
+import { GetProfileAction } from "../../actions/ProfileActions";
+import { CakeComponent } from "../../components/icons/CakeComponent";
+import { KarmaComponent } from "../../components/icons/KarmaComponent";
+import PostComponent from "../../components/posts/PostComponent";
+import { NotFoundComponent } from "../../components/utility/NotFound";
+import { Wrapper } from "../../components/utility/Wrapper";
+import { PostState, setPostState } from "../../state/PostState";
+import { CurrentView } from "../../types/PostType";
+import { IUser } from "../../types/UserType";
+import { NotEmpty } from "../../utils/NotEmpty";
 
 const PublicProfile: NextPage<PublicProfileProps> = ({ user }) => {
-  const page = 1
+  const page = 1;
   useEffect(() => {
     setPostState((prevState) =>
       page === 1
         ? { posts: user.posts, currentView: CurrentView.multiple }
         : { posts: [...prevState.posts, ...user.posts], currentView: CurrentView.multiple }
-    )
-  }, [])
-  const posts = PostState((state) => state.posts)
-  const [isMobile] = useMediaQuery("(max-width: 800px)")
-  const { colorMode } = useColorMode()
+    );
+  }, []);
+  const posts = PostState((state) => state.posts);
+  const [isMobile] = useMediaQuery("(max-width: 800px)");
+  const { colorMode } = useColorMode();
 
   const Page = () => (
     <Wrapper>
@@ -88,24 +89,24 @@ const PublicProfile: NextPage<PublicProfileProps> = ({ user }) => {
         )}
       </Flex>
     </Wrapper>
-  )
+  );
 
-  return NotEmpty(user) ? <Page /> : <>not found</>
-}
+  return NotEmpty(user) ? <Page /> : <NotFoundComponent title="profile" />;
+};
 
 interface PublicProfileProps {
-  user: IUser
+  user: IUser;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const userId: string = typeof params.id === "string" ? params.id : "null"
-  let user
+  const userId: string = typeof params.id === "string" ? params.id : "null";
+  let user;
   try {
-    user = await GetProfileAction(userId)
+    user = await GetProfileAction(userId);
   } catch (error) {
-    user = {}
+    user = {};
   }
-  return { props: { user } as PublicProfileProps }
-}
+  return { props: { user } as PublicProfileProps };
+};
 
-export default PublicProfile
+export default PublicProfile;
