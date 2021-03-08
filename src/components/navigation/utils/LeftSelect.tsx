@@ -21,6 +21,7 @@ export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
       <option value="/">Home</option>
       <option value="/popular">Popular</option>
       <option value="/topCommunities">Top Communities</option>
+      <option value={asPath}>{asPath.substring(1)}</option>
     </Select>
   )
 }
