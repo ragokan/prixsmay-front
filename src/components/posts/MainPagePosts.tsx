@@ -2,6 +2,7 @@ import { useMediaQuery, Flex, Stack } from "@chakra-ui/react";
 import React from "react";
 import { UserState } from "../../state/UserState";
 import { IPost } from "../../types/PostType";
+import { MainRightPanel } from "../main/MainRightPanel";
 import { AuthBanner } from "../utility/AuthBanner";
 import { Wrapper } from "../utility/Wrapper";
 import PostComponent from "./PostComponent";
@@ -18,15 +19,7 @@ export const MainPagePosts: React.FC<{ posts: IPost[] }> = ({ posts = [] }) => {
             <PostComponent key={index} post={post} />
           ))}
         </Stack>
-        {!isMobile && (
-          <Stack spacing={8} flex={1}>
-            {new Array(20)
-              .fill(() => "")
-              .map((val, index) => (
-                <div key={index}>Hop</div>
-              ))}
-          </Stack>
-        )}
+        <MainRightPanel />
       </Flex>
     </Wrapper>
   );
