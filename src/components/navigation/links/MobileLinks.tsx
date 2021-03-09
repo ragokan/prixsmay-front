@@ -9,16 +9,18 @@ import {
   DrawerOverlay,
   useDisclosure,
   VStack,
-} from "@chakra-ui/react"
-import React from "react"
-import { ColorModeSwitcher } from "../../utility/ColorModeSwitcher"
-import { LinksForMobile } from "./LinksForMobile"
-import { FaBars } from "react-icons/fa"
-import { IUser } from "../../../types/UserType"
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import React from "react";
+import { FaBars } from "react-icons/fa";
+import { LogoutAction } from "../../../actions/AuthActions";
+import { IUser } from "../../../types/UserType";
+import { ColorModeSwitcher } from "../../utility/ColorModeSwitcher";
 
 export const MobileLinks: React.FC<{ user: IUser }> = ({ user }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef<HTMLButtonElement>(null)
+  const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef<HTMLButtonElement>(null);
   return (
     <>
       <Button ref={btnRef} onClick={onOpen}>
@@ -33,7 +35,15 @@ export const MobileLinks: React.FC<{ user: IUser }> = ({ user }) => {
             </DrawerHeader>
             <DrawerBody>
               <VStack alignItems="start" spacing="6" style={{ marginTop: 20 }} onClick={onClose} width="min">
-                <LinksForMobile isLogged={Boolean(user)} />
+                <Button onClick={() => router.push("/user/account")} variant="link" color="current">
+                  Account
+                </Button>
+                <Button onClick={() => router.push(`/profile/${user.username}`)} variant="link" color="current">
+                  Profile
+                </Button>
+                <Button onClick={async () => await LogoutAction(() => router.push("/"))} variant="link" color="current">
+                  Logout
+                </Button>
               </VStack>
               <ColorModeSwitcher marginTop="5" />
             </DrawerBody>
@@ -41,5 +51,5 @@ export const MobileLinks: React.FC<{ user: IUser }> = ({ user }) => {
         </DrawerOverlay>
       </Drawer>
     </>
-  )
-}
+  );
+};

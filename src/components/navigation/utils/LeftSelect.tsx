@@ -1,13 +1,13 @@
-import { Select } from "@chakra-ui/react"
-import { useRouter } from "next/dist/client/router"
-import React from "react"
-import { FaFilter } from "react-icons/fa"
+import { Select } from "@chakra-ui/react";
+import { useRouter } from "next/dist/client/router";
+import React from "react";
+import { FaFilter } from "react-icons/fa";
 
 export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
-  const { push, asPath } = useRouter()
+  const { push, asPath } = useRouter();
   return (
     <Select
-      maxWidth={isPhone ? 100 : 200}
+      maxWidth={isPhone ? 100 : 150}
       icon={<FaFilter />}
       colorScheme="gray"
       size="sm"
@@ -23,5 +23,5 @@ export const LeftSelect: React.FC<{ isPhone: boolean }> = ({ isPhone }) => {
       <option value="/topCommunities">Top Communities</option>
       <option value={asPath}>{asPath.substring(1)}</option>
     </Select>
-  )
-}
+  );
+};
