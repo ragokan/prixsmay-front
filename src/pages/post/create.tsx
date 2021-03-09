@@ -1,21 +1,21 @@
-import { Button, Divider, FormLabel, Heading } from "@chakra-ui/react"
-import { NextPage } from "next"
-import { useRouter } from "next/router"
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import { InputComponent } from "../../components/form/InputComponent"
-import { Head } from "../../components/navigation/links/Head"
-import { MarkdownEditor } from "../../components/posts/markdown/MarkdownEditor"
-import { Container } from "../../components/utility/Container"
+import { Button, Divider, FormLabel, Heading } from "@chakra-ui/react";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { InputComponent } from "../../components/form/InputComponent";
+import { Head } from "../../components/navigation/links/Head";
+import { MarkdownEditor } from "../../components/posts/markdown/MarkdownEditor";
+import { Container } from "../../components/utility/Container";
 
 const CreatePost: NextPage = () => {
-  const [content, setContent] = useState<string>("")
-  const router = useRouter()
+  const [content, setContent] = useState<string>("");
+  const router = useRouter();
   const { handleSubmit, errors, register, formState } = useForm({
     defaultValues: { title: "" },
-  })
+  });
 
-  const onSubmit = async () => {}
+  const onSubmit = async () => {};
 
   return (
     <Container maxW={800} m="auto">
@@ -32,7 +32,7 @@ const CreatePost: NextPage = () => {
         </Button>
       </form>
     </Container>
-  )
-}
+  );
+};
 
-export default CreatePost
+export default CreatePost;
