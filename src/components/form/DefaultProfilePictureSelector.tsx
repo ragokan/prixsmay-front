@@ -8,25 +8,27 @@ import {
   Avatar,
   Flex,
   AvatarBadge,
-} from "@chakra-ui/react"
-import { ProfilePictureConstants } from "../../constants/ProfilePictureConstants"
-import React from "react"
+} from "@chakra-ui/react";
+import { ProfilePictureConstants } from "../../constants/ProfilePictureConstants";
+import React from "react";
 
 interface DefaultProfilePictureSelectorProps {
-  profilePicture: string
-  setProfilePicture: (picture: string) => void
+  profilePicture: string;
+  setProfilePicture: (picture: string) => void;
+  hideTexts?: boolean;
 }
 
 export const DefaultProfilePictureSelector: React.FC<DefaultProfilePictureSelectorProps> = ({
   profilePicture,
   setProfilePicture,
+  hideTexts = false,
 }) => {
   React.useEffect(() => {
-    setProfilePicture(ProfilePictureConstants[0])
-  }, [])
+    setProfilePicture(ProfilePictureConstants[0]);
+  }, []);
   return (
     <FormControl id="profilePicture" mb={7}>
-      <FormLabel>Profile Picture</FormLabel>
+      {!hideTexts && <FormLabel>Profile Picture</FormLabel>}
       <RadioGroup
         onChange={setProfilePicture}
         value={profilePicture}
@@ -45,7 +47,9 @@ export const DefaultProfilePictureSelector: React.FC<DefaultProfilePictureSelect
           ))}
         </Flex>
       </RadioGroup>
-      <FormHelperText>Don't worry, you can upload any picture after creating your account!</FormHelperText>
+      {!hideTexts && (
+        <FormHelperText>Don't worry, you can upload any picture after creating your account!</FormHelperText>
+      )}
       <FormHelperText>
         For Picture Credits{" "}
         <Link href="https://www.behance.net/gallery/47035405/Free-avatars-flat-icons" isExternal color="blue.400">
@@ -53,5 +57,5 @@ export const DefaultProfilePictureSelector: React.FC<DefaultProfilePictureSelect
         </Link>
       </FormHelperText>
     </FormControl>
-  )
-}
+  );
+};
