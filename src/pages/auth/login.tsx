@@ -1,26 +1,26 @@
-import { Button, Divider, Heading } from "@chakra-ui/react"
-import React from "react"
-import { useForm } from "react-hook-form"
-import { FaLock } from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
-import { LoginAction } from "../../actions/AuthActions"
-import { InputComponent } from "../../components/form/InputComponent"
-import { Head } from "../../components/navigation/links/Head"
-import { UserProtect } from "../../components/utility/auth/UserProtect"
-import { BothLink } from "../../components/utility/BothLink"
-import { Container } from "../../components/utility/Container"
-import { LoginBodyType } from "../../types/RequestBodyTypes"
-import * as UserValidation from "../../validation/UserValidation"
+import { Button, Divider, Heading } from "@chakra-ui/react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { FaLock } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { LoginAction } from "../../actions/AuthActions";
+import { InputComponent } from "../../components/form/InputComponent";
+import { Head } from "../../components/navigation/links/Head";
+import { ProtectFromUser } from "../../components/utility/auth/ProtectFromUser";
+import { BothLink } from "../../components/utility/BothLink";
+import { Container } from "../../components/utility/Container";
+import { LoginBodyType } from "../../types/RequestBodyTypes";
+import * as UserValidation from "../../validation/UserValidation";
 
 const Login: React.FC = () => {
-  UserProtect()
+  ProtectFromUser();
   const { handleSubmit, errors, register, formState } = useForm<LoginBodyType>({
     defaultValues: { email: "", password: "" },
-  })
+  });
 
   const onSubmit = async (values: LoginBodyType) => {
-    await LoginAction(values)
-  }
+    await LoginAction(values);
+  };
 
   return (
     <Container maxW={800} m="auto">
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
       <Divider height="5" />
       Don't have an account? Click to <BothLink href="/auth/register">Register!</BothLink>
     </Container>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

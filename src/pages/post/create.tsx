@@ -1,16 +1,16 @@
 import { Button, Divider, FormLabel, Heading } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { InputComponent } from "../../components/form/InputComponent";
 import { Head } from "../../components/navigation/links/Head";
 import { MarkdownEditor } from "../../components/posts/markdown/MarkdownEditor";
+import { AuthRequired } from "../../components/utility/auth/AuthRequired";
 import { Container } from "../../components/utility/Container";
 
 const CreatePost: NextPage = () => {
+  AuthRequired();
   const [content, setContent] = useState<string>("");
-  const router = useRouter();
   const { handleSubmit, errors, register, formState } = useForm({
     defaultValues: { title: "" },
   });

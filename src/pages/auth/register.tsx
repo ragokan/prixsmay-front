@@ -1,31 +1,31 @@
-import { Button, Divider, Heading } from "@chakra-ui/react"
-import { useRouter } from "next/dist/client/router"
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import { FaLock, FaUserCircle } from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
-import { RegisterAction } from "../../actions/AuthActions"
-import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector"
-import { InputComponent } from "../../components/form/InputComponent"
-import { Head } from "../../components/navigation/links/Head"
-import { UserProtect } from "../../components/utility/auth/UserProtect"
-import { BothLink } from "../../components/utility/BothLink"
-import { Container } from "../../components/utility/Container"
-import { RegisterBodyType } from "../../types/RequestBodyTypes"
-import * as UserValidation from "../../validation/UserValidation"
+import { Button, Divider, Heading } from "@chakra-ui/react";
+import { useRouter } from "next/dist/client/router";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaLock, FaUserCircle } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { RegisterAction } from "../../actions/AuthActions";
+import { DefaultProfilePictureSelector } from "../../components/form/DefaultProfilePictureSelector";
+import { InputComponent } from "../../components/form/InputComponent";
+import { Head } from "../../components/navigation/links/Head";
+import { ProtectFromUser } from "../../components/utility/auth/ProtectFromUser";
+import { BothLink } from "../../components/utility/BothLink";
+import { Container } from "../../components/utility/Container";
+import { RegisterBodyType } from "../../types/RequestBodyTypes";
+import * as UserValidation from "../../validation/UserValidation";
 
 const Register: React.FC = () => {
-  UserProtect()
-  const router = useRouter()
+  ProtectFromUser();
+  const router = useRouter();
   const { handleSubmit, errors, register, formState } = useForm<RegisterBodyType>({
     defaultValues: { email: "", password: "", username: "" },
-  })
-  const [profilePicture, setProfilePicture] = useState<string>("")
+  });
+  const [profilePicture, setProfilePicture] = useState<string>("");
 
   const onSubmit = async (values: RegisterBodyType) => {
-    const postValue = { ...values, pictureUrl: profilePicture }
-    await RegisterAction(postValue, () => router.push("/auth/registerSuccess"))
-  }
+    const postValue = { ...values, pictureUrl: profilePicture };
+    await RegisterAction(postValue, () => router.push("/auth/registerSuccess"));
+  };
 
   return (
     <Container maxW={800} m="auto">
@@ -72,7 +72,7 @@ const Register: React.FC = () => {
       <Divider height="5" />
       Already an user? Click to <BothLink href="/auth/login">Login!</BothLink>
     </Container>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
